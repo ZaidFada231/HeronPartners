@@ -1,0 +1,190 @@
+---
+import heronblack from "../assets/heron-partners-black.png";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Investor Login | Heron Partners</title>
+  </head>
+  <body>
+    <section id="header" style="position: relative;">
+      <a href="/" class="back-button">&larr; Back</a>
+      <!-- <img src={heronblack.src} alt="Heron Partners Logo" class="logo" /> -->
+    </section>
+
+    <div class="login-page">
+      <div class="login-card fade-section">
+        <h1>Investor Login</h1>
+        <form class="login-form" action="#" method="post">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" required />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+
+          <button type="submit" class="button">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Garamond", "Georgia", serif;
+        background-color: #a8b0bc;
+      }
+
+      .logo {
+        width: 350px;
+        height: auto;
+        display: block;
+        margin: 1rem auto;
+      }
+
+      .button {
+        font-size: 1.2rem;
+        background-color: #003366;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        width: 100%;
+      }
+
+      .button:hover {
+        background-color: #0056b3;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
+        background-color: #003366;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .back-button:hover {
+        background-color: #0056b3;
+      }
+
+      .login-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 2rem;
+        min-height: 70vh;
+      }
+
+      .login-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .login-card h1 {
+        font-size: 2.5rem;
+        color: #003366;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .login-form label {
+        font-size: 1.2rem;
+        color: #003366;
+        font-weight: bold;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .login-form input[type="text"]:focus,
+      .login-form input[type="password"]:focus {
+        outline: none;
+        border-color: #003366;
+      }
+
+      .fade-section {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .logo {
+          width: 250px;
+        }
+        .back-button {
+          top: 1rem;
+          left: 1rem;
+          font-size: 0.9rem;
+          padding: 0.4rem 0.8rem;
+        }
+        .login-card h1 {
+          font-size: 2rem;
+        }
+        .login-card {
+          padding: 16px 16px;
+        }
+        .login-form label,
+        .login-form input {
+          font-size: 1rem;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(".fade-section").forEach((section) => {
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>

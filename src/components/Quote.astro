@@ -1,0 +1,62 @@
+<section class="fade-section" id="quote">
+  <blockquote>
+    “To enjoy a reasonable chance for continued better than average results, the
+    investor must follow policies which are (1) inherently sound and promising,
+    and (2) not popular on Wall Street”
+  </blockquote>
+  <cite>- Benjamin Graham, The Intelligent Investor</cite>
+</section>
+
+<style>
+  #quote {
+    background-color: #a8b0bc;
+    text-align: center;
+    padding: 50px;
+    font-size: 1.7rem;
+    font-style: italic;
+    color: #444;
+  }
+
+  #quote cite {
+    font-size: 1.2rem;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .fade-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Mobile Optimization */
+  @media (max-width: 900px) {
+    #quote {
+      padding: 10px;
+      font-size: 1.2rem;
+    }
+
+    #quote cite {
+      font-size: 1rem;
+    }
+    @keyframes fade-in-out {
+      0% {
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+<footer id="footer">
+  <div class="footer-content fade-section">
+    <p><strong>© Heron Partners</strong></p>
+    <p>PO Box 8037, Roanoke, VA, 24004, USA</p>
+    <p>
+      For media inquiries, please contact <a
+        href="mailto:media@heronpartners.com">media@heronpartners.com</a
+      >
+    </p>
+
+    <hr />
+    <p class="disclaimer">
+      The information on this website is for informational purposes only and not
+      intended as investment advice. It is provided "as is" without any
+      warranty. Heron Partners currently manages only the personal capital of
+      its owner. This site does not constitute a solicitation or offer of any
+      investment products or services. Changes to the content and terms of use
+      may occur at any time without notice.
+    </p>
+  </div>
+</footer>
+
+<style>
+  #footer {
+    background-color: #4a4a4a;
+    color: #d1d1d1;
+    padding: 40px 20px;
+    font-size: 1rem;
+  }
+
+  #footer strong {
+    font-size: 1.4rem;
+    color: white;
+  }
+
+  #footer a {
+    color: #d1d1d1;
+    text-decoration: none;
+  }
+
+  #footer a:hover {
+    text-decoration: underline;
+  }
+
+  #footer hr {
+    margin: 20px auto;
+    border: 0.5px solid #777; /* Thin gray divider line */
+  }
+
+  #footer .disclaimer {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: auto;
+    color: #b0b0b0;
+  }
+
+  .fade-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    #footer strong {
+      font-size: 1rem;
+    }
+    #footer {
+      font-size: 0.9rem;
+      padding: 20px 10px;
+    }
+  }
+</style>

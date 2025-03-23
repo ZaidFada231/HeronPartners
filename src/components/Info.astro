@@ -1,0 +1,127 @@
+<section id="info">
+  <div class="content">
+    <div class="section fade-section">
+      <h1>Population</h1>
+      <p>
+        In the coming decades, Africa will benefit from a young, expanding, and
+        entrepreneurial populace, in stark contrast to the aging demographics
+        and overburdened entitlement programs which characterize many developed
+        economies.
+      </p>
+    </div>
+    <div class="section fade-section">
+      <h1>Perception</h1>
+      <p>
+        The West perceives Africa poorly. Despite facing challenges such as
+        corruption, climate change, and conflict, the continent offers abundant
+        opportunities for managers who are willing to take a deeper, nuanced
+        look into Africa's capital markets.
+      </p>
+    </div>
+    <div class="section fade-section">
+      <h1>Perspective</h1>
+      <p>
+        As a dedicated manager with a continent-wide focus, Heron leverages its
+        expertise to outperform well-funded global institutions and achieve
+        greater diversification than local investors, despite their extensive
+        market experience and local expertise.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fade-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #info {
+    background-color: white;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 100px;
+  }
+
+  #info .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    margin: 0 20px;
+    width: 100%;
+  }
+
+  #info .section {
+    flex: 1;
+    max-width: 33%;
+  }
+
+  #info h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 10px;
+    border-left: 5px solid #003366;
+    padding-left: 15px;
+  }
+
+  #info p {
+    font-size: 1.5rem;
+    color: #333;
+    line-height: 1.5;
+    padding-left: 20px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    @keyframes fade-in-out {
+      0% {
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    #info {
+      padding: 10px 20px;
+    }
+
+    #info h1 {
+      font-size: 2rem;
+    }
+
+    #info p {
+      font-size: 1rem;
+    }
+
+    #info .content {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #info .section {
+      max-width: 100%;
+    }
+
+    #info p {
+      padding-left: 0;
+    }
+  }
+</style>
