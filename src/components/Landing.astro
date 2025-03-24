@@ -38,9 +38,9 @@ import heronblack from "../assets/heron-partners-black.png";
     </section>
 
     <p>
-      Founded in 2023, Heron Partners has consistently pursued excellence within
-      Africa's capital markets. Our strategy focuses on delivering genuine alpha
-      by identifying and investing in exceptional, accretive businesses priced
+      Founded in 2023, Heron Partners is an investment firm pursuing excellence
+      in Africa's capital markets. Our strategy focuses on delivering genuine
+      alpha by investing in exceptional, accretive businesses priced
       significantly below their intrinsic value.
     </p>
   </section>
@@ -85,6 +85,9 @@ import heronblack from "../assets/heron-partners-black.png";
     opacity: 1;
     transition: opacity 0.5s ease;
   }
+  .value-text:hover {
+    color: #a8b0bc;
+  }
 
   .landing {
     height: 100vh;
@@ -101,7 +104,7 @@ import heronblack from "../assets/heron-partners-black.png";
   }
 
   #welcome p {
-    font-size: 3.5rem;
+    font-size: 3.3rem;
     text-align: left;
     color: #333;
     padding: 0 150px;
@@ -194,45 +197,12 @@ import heronblack from "../assets/heron-partners-black.png";
     transform: translateY(0);
     pointer-events: auto;
   }
-
-  /* "Top" portion of overlay (rotating text + logo + close button) */
-  .header-overlay-top {
-    background-color: #003366;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding: 15px 0; /* same as #values-header uses */
-    margin: 0;
-    top: 0; /* ensure it sits at the top */
-  }
   .overlay-top {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1.5rem 1rem 0;
   }
-
-  /* Replicated rotating text in overlay */
-  #overlay-values-container {
-    /* You can style or position differently from main header if you wish */
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .overlay-value-text {
-    opacity: 0;
-    position: relative;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #003366;
-  }
-  .overlay-value-text.active {
-    opacity: 1;
-  }
-
   .overlay-logo-row {
     display: flex;
     align-items: center;
@@ -276,6 +246,9 @@ import heronblack from "../assets/heron-partners-black.png";
     #down-arrow {
       left: 50%;
       font-size: 2.2rem;
+    }
+    #welcome {
+      height: 96dvh;
     }
 
     #welcome p {
@@ -346,20 +319,35 @@ import heronblack from "../assets/heron-partners-black.png";
      * MOBILE VALUES CYCLING
      ********************************************/
     const values = document.querySelectorAll("#values-container .value-text");
-    let currentIndex = 0;
+    let currentIndex = 0,
+      intervalId: number | null | undefined;
 
     function cycleValues() {
-      if (window.innerWidth > 900) return;
       values.forEach((el) => el.classList.remove("active"));
       values[currentIndex].classList.add("active");
       currentIndex = (currentIndex + 1) % values.length;
     }
 
-    // Run the cycle if on mobile
-    if (window.innerWidth <= 900) {
-      cycleValues();
-      setInterval(cycleValues, 3000);
+    function handleViewportChange() {
+      if (window.innerWidth <= 900) {
+        // if not already cycling, start it
+        if (!intervalId) {
+          cycleValues(); // show first immediately
+          intervalId = setInterval(cycleValues, 3000);
+        }
+      } else {
+        // stop cycling if we go above 900
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
     }
+
+    // Run once on load
+    handleViewportChange();
+    // Also run when window is resized
+    window.addEventListener("resize", handleViewportChange);
 
     /********************************************
      * HAMBURGER MENU TOGGLE
