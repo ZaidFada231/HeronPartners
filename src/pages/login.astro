@@ -29,6 +29,7 @@ import heronblack from "../assets/heron-partners-black.png";
         </form>
       </div>
     </div>
+    <div id="toast-message" class="toast">Login invalid</div>
 
     <style>
       html,
@@ -144,7 +145,28 @@ import heronblack from "../assets/heron-partners-black.png";
         opacity: 1;
         transform: translateY(0);
       }
-
+      .toast {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background-color: #003366;
+        color: #fff;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none; /* Not clickable */
+        z-index: 9999; /* Above everything else */
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
       @media (max-width: 900px) {
         .logo {
           width: 250px;
@@ -170,6 +192,9 @@ import heronblack from "../assets/heron-partners-black.png";
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Use IntersectionObserver to fade in the login card
+
+        const card = document.querySelector(".login-card");
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -180,10 +205,34 @@ import heronblack from "../assets/heron-partners-black.png";
           },
           { threshold: 0.1 }
         );
+        if (card) {
+          observer.observe(card);
+        }
 
-        document.querySelectorAll(".fade-section").forEach((section) => {
-          observer.observe(section);
-        });
+        // Grab elements for the login form and toast
+        const loginForm = document.querySelector(".login-form");
+        const toastMessage = document.getElementById("toast-message");
+
+        // Function to show the toast
+        function showToast(message: string | null) {
+          if (toastMessage) {
+            toastMessage.textContent = message;
+            toastMessage.classList.add("show");
+
+            // Hide the toast after 3 seconds
+            setTimeout(() => {
+              toastMessage.classList.remove("show");
+            }, 3000);
+          }
+        }
+
+        // On form submit, always show "Login invalid" toast
+        if (loginForm) {
+          loginForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // prevent actual submission
+            showToast("Login invalid");
+          });
+        }
       });
     </script>
   </body>
