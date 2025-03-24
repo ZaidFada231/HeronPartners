@@ -29,7 +29,9 @@ import heronblack from "../assets/heron-partners-black.png";
         </form>
       </div>
     </div>
-    <div id="toast-message" class="toast">Login invalid</div>
+    <div id="toast-message" class="toast">
+      Login invalid - Contact administraion if you think this is a mistake
+    </div>
 
     <style>
       html,
@@ -234,7 +236,9 @@ import heronblack from "../assets/heron-partners-black.png";
         if (loginForm) {
           loginForm.addEventListener("submit", (event) => {
             event.preventDefault(); // prevent actual submission
-            showToast("Login invalid");
+            showToast(
+              "Login Invalid - Contact Administraion If You Think This Is A Mistake"
+            );
           });
         }
       });
