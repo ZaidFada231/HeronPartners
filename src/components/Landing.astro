@@ -5,11 +5,7 @@ import heronblack from "../assets/heron-partners-black.png";
 <div class="landing">
   <section id="values-header">
     <div id="values-container">
-      <span class="value-text active">Humility</span>
-      <span class="value-text">Passion</span>
-      <span class="value-text">Unity</span>
-      <span class="value-text">Servanthood</span>
-      <span class="value-text">Integrity</span>
+      <span class="value-text">Humility</span>
     </div>
   </section>
 
@@ -82,6 +78,7 @@ import heronblack from "../assets/heron-partners-black.png";
   }
 
   .value-text {
+    visibility: hidden
     opacity: 1;
     transition: opacity 0.5s ease;
   }
@@ -286,12 +283,6 @@ import heronblack from "../assets/heron-partners-black.png";
     .value-text {
       display: none;
       position: absolute;
-      font-size: 1rem;
-      animation: fade-in-out 3s linear infinite;
-    }
-
-    .value-text.active {
-      display: block;
     }
 
     @keyframes fade-in-out {
@@ -311,60 +302,3 @@ import heronblack from "../assets/heron-partners-black.png";
   }
 </style>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    /********************************************
-     * MOBILE VALUES CYCLING
-     ********************************************/
-    const values = document.querySelectorAll("#values-container .value-text");
-    let currentIndex = 0,
-      intervalId: number | null | undefined;
-
-    function cycleValues() {
-      values.forEach((el) => el.classList.remove("active"));
-      values[currentIndex].classList.add("active");
-      currentIndex = (currentIndex + 1) % values.length;
-    }
-
-    function handleViewportChange() {
-      if (window.innerWidth <= 900) {
-        // if not already cycling, start it
-        if (!intervalId) {
-          cycleValues(); // show first immediately
-          intervalId = setInterval(cycleValues, 3000);
-        }
-      } else {
-        // stop cycling if we go above 900
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
-        }
-      }
-    }
-
-    // Run once on load
-    handleViewportChange();
-    // Also run when window is resized
-    window.addEventListener("resize", handleViewportChange);
-
-    /********************************************
-     * HAMBURGER MENU TOGGLE
-     ********************************************/
-    const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const closeOverlay = document.getElementById("close-overlay");
-
-    if (hamburger && mobileMenu) {
-      hamburger.addEventListener("click", () => {
-        mobileMenu.classList.toggle("open");
-      });
-    }
-
-    // Close the overlay when "X" button is clicked
-    if (closeOverlay && mobileMenu) {
-      closeOverlay.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-      });
-    }
-  });
-</script>
