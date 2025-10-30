@@ -29,37 +29,3 @@ import Footer from "./Footer.astro";
     height: 100%;
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document.querySelectorAll(".fade-section").forEach((section) => {
-      observer.observe(section);
-    });
-
-    const values = document.querySelectorAll("#values-container .value-text");
-    let currentIndex = 0;
-
-    function cycle() {
-      if (window.innerWidth > 900) return;
-      values.forEach((el) => el.classList.remove("active"));
-      values[currentIndex].classList.add("active");
-      currentIndex = (currentIndex + 1) % values.length;
-    }
-
-    if (window.innerWidth <= 900) {
-      cycle();
-      setInterval(cycle, 3000);
-    }
-  });
-</script>
